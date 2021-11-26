@@ -25,16 +25,18 @@ class Person:
         return self.dob
 
     def update_status(self):
-        self.alive = AliveStatus.deceased if self.alive == AliveStatus.alive else AliveStatus.alive
-
-
+        if AliveStatus == 0:
+            self.alive = AliveStatus.deceased
+            return self.alive
+        else:
+            self.alive = AliveStatus.alive
+            return self.alive
 
 
 class Instructor(Person):
     def __init__(self, instructor_id, first_name, last_name, dob, alive):
         super().__init__(first_name, last_name, dob, alive)
         self.instructor_id = 'Instructor_{}.format(uuid4())'
-
 
 
 class Student(Person):
@@ -79,9 +81,9 @@ class Classroom:
         return self.students
 
     def print_instructors(self):
-        for instructor in self.instructors.values():
+        for instructor_id in self.instructors.values():
             print('{} {} {} {} {}.format(instructor.instructor_id, instructor.first_name, instructor.last_name, instructor.dob, instructor.alive')
 
     def print_students(self):
-        for student in self.students.values():
+        for student_id in self.students.values():
             print('{} {} {} {} {}.format(student.student_id, student.first_name, student.last_name, student.dob, student.alive')
